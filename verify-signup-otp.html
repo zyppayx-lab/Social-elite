@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Verify OTP | SocialElite</title>
+
+<link rel="icon"
+href="../assets/favicon.ico">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="verify-signup-otp.css">
+
+</head>
+
+<body>
+
+<div class="background-blur blur-one"></div>
+
+<div class="background-blur blur-two"></div>
+
+<div class="verify-container">
+
+<div class="verify-card">
+
+<a
+href="../index.html"
+class="logo">
+
+<div class="logo-icon">
+
+S
+
+</div>
+
+<span>
+
+Social<span class="blue">Elite</span>
+
+</span>
+
+</a>
+
+<div class="heading">
+
+<h1>
+
+Verify Your Email
+
+</h1>
+
+<p>
+
+Enter the 6-digit verification code sent to your email address.
+
+</p>
+
+</div>
+
+<div
+id="successMessage"
+class="success-box hidden">
+
+</div>
+
+<div
+id="errorMessage"
+class="error-box hidden">
+
+</div>
+
+<form
+id="verifyForm">
+
+<div class="form-group">
+
+<label>
+
+Verification Code
+
+</label>
+
+<input
+
+type="text"
+
+id="otp"
+
+maxlength="6"
+
+inputmode="numeric"
+
+autocomplete="one-time-code"
+
+placeholder="Enter 6-digit OTP"
+
+required
+
+>
+
+</div>
+
+<button
+
+type="submit"
+
+id="verifyButton"
+
+class="verify-button">
+
+<span id="buttonText">
+
+Verify Account
+
+</span>
+
+<div
+
+id="loadingSpinner"
+
+class="spinner hidden">
+
+</div>
+
+</button>
+
+</form>
+
+<div class="divider">
+
+<span>
+
+Didn't receive the code?
+
+</span>
+
+</div>
+
+<button
+
+id="resendButton"
+
+class="resend-button">
+
+Resend OTP
+
+</button>
+
+<div class="footer">
+
+<p>
+
+Already have an account?
+
+<a href="../login/login.html">
+
+Login
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="verify-signup-otp.ts"></script>
+
+</body>
+
+  </html>
