@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | SocialElite</title>
+
+<link rel="icon"
+href="../assets/favicon.ico">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="signup.css">
+
+</head>
+
+<body>
+
+<div class="background-blur blur-one"></div>
+
+<div class="background-blur blur-two"></div>
+
+<div class="signup-container">
+
+<div class="signup-card">
+
+<!-- Logo -->
+
+<a
+href="../index.html"
+class="logo">
+
+<div class="logo-icon">
+
+S
+
+</div>
+
+<span>
+
+Social<span class="blue">Elite</span>
+
+</span>
+
+</a>
+
+<!-- Heading -->
+
+<div class="heading">
+
+<h1>
+
+Create Your Account
+
+</h1>
+
+<p>
+
+Join SocialElite and start earning from digital services.
+
+</p>
+
+</div>
+
+<!-- Success -->
+
+<div
+id="successMessage"
+class="success-box hidden">
+
+</div>
+
+<!-- Error -->
+
+<div
+id="errorMessage"
+class="error-box hidden">
+
+</div>
+
+<form
+id="signupForm">
+
+<!-- Full Name -->
+
+<div class="form-group">
+
+<label>
+
+Full Name
+
+</label>
+
+<input
+
+type="text"
+
+id="fullName"
+
+placeholder="Enter your full name"
+
+autocomplete="name"
+
+required
+
+>
+
+</div>
+
+<!-- Username -->
+
+<div class="form-group">
+
+<label>
+
+Username
+
+</label>
+
+<input
+
+type="text"
+
+id="username"
+
+placeholder="Choose a username"
+
+autocomplete="username"
+
+required
+
+>
+
+</div>
+
+<!-- Email -->
+
+<div class="form-group">
+
+<label>
+
+Email Address
+
+</label>
+
+<input
+
+type="email"
+
+id="email"
+
+placeholder="Enter your email"
+
+autocomplete="email"
+
+required
+
+>
+
+</div>
+
+<!-- Password -->
+
+<div class="form-group">
+
+<label>
+
+Password
+
+</label>
+
+<div class="password-wrapper">
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Create a password"
+
+autocomplete="new-password"
+
+required
+
+>
+
+<button
+
+type="button"
+
+id="togglePassword"
+
+class="toggle-password">
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Confirm Password -->
+
+<div class="form-group">
+
+<label>
+
+Confirm Password
+
+</label>
+
+<div class="password-wrapper">
+
+<input
+
+type="password"
+
+id="confirmPassword"
+
+placeholder="Confirm password"
+
+autocomplete="new-password"
+
+required
+
+>
+
+<button
+
+type="button"
+
+id="toggleConfirmPassword"
+
+class="toggle-password">
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Referral -->
+
+<div class="form-group">
+
+<label>
+
+Referral Code
+(Optional)
+
+</label>
+
+<input
+
+type="text"
+
+id="referralCode"
+
+placeholder="Enter referral code"
+
+>
+
+</div>
+
+<!-- Terms -->
+
+<div class="options">
+
+<label class="remember">
+
+<input
+type="checkbox"
+id="terms"
+required>
+
+<span>
+
+I agree to the
+<a href="../terms.html">Terms</a>
+and
+<a href="../privacy.html">Privacy Policy</a>
+
+</span>
+
+</label>
+
+</div>
+
+<!-- Create Account -->
+
+<button
+
+type="submit"
+
+id="signupButton"
+
+class="signup-button">
+
+<span
+id="buttonText">
+
+Create Account
+
+</span>
+
+<div
+
+id="loadingSpinner"
+
+class="spinner hidden">
+
+</div>
+
+</button>
+
+</form>
+
+<!-- Divider -->
+
+<div class="divider">
+
+<span>
+
+OR
+
+</span>
+
+</div>
+
+<!-- Login -->
+
+<div class="login-section">
+
+<p>
+
+Already have an account?
+
+</p>
+
+<a
+
+href="../login/login.html"
+
+class="login-button">
+
+Login
+
+</a>
+
+</div>
+
+<!-- Footer -->
+
+<div class="footer">
+
+<p>
+
+© 2026 SocialElite.
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="signup.ts"></script>
+
+</body>
+
+  </html>
