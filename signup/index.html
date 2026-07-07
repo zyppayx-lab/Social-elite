@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Create Account | SocialElite</title>
+
+<meta
+name="description"
+content="Create your SocialElite account to buy premium social media accounts and virtual numbers securely.">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="index.css">
+
+</head>
+
+<body>
+
+<div class="signup-page">
+
+<div class="signup-card">
+
+<div class="logo-area">
+
+<a href="/">
+
+<h1>SocialElite</h1>
+
+</a>
+
+<p>
+
+Premium Digital Marketplace
+
+</p>
+
+</div>
+
+<div class="heading">
+
+<h2>Create Account</h2>
+
+<p>
+
+Create your account to access premium digital products.
+
+</p>
+
+</div>
+
+<form
+id="signupForm"
+autocomplete="off">
+
+<div class="form-group">
+
+<label for="fullname">
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="fullname"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label for="email">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="example@email.com"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label for="password">
+
+Password
+
+</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Create password"
+required>
+
+<button
+type="button"
+id="togglePassword">
+
+Show
+
+</button>
+
+</div>
+
+<div
+class="strength">
+
+<div
+id="strengthBar"></div>
+
+</div>
+
+<small
+id="strengthText">
+
+Password Strength
+
+</small>
+
+</div>
+<div class="form-group">
+
+<label for="confirmPassword">
+
+Confirm Password
+
+</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm your password"
+required>
+
+<button
+type="button"
+id="toggleConfirmPassword">
+
+Show
+
+</button>
+
+</div>
+
+<small
+id="passwordMatch">
+
+</small>
+
+</div>
+
+<div class="form-group">
+
+<label for="referralCode">
+
+Referral Code
+
+<span>(Optional)</span>
+
+</label>
+
+<input
+type="text"
+id="referralCode"
+placeholder="Enter referral code">
+
+</div>
+
+<div class="checkbox-group">
+
+<label>
+
+<input
+type="checkbox"
+id="agreeTerms"
+required>
+
+<span>
+
+I agree to the
+
+<a href="/terms/">
+
+Terms of Service
+
+</a>
+
+and
+
+<a href="/privacy/">
+
+Privacy Policy
+
+</a>
+
+</span>
+
+</label>
+
+</div>
+
+<button
+type="submit"
+id="signupButton"
+class="primary-btn">
+
+Create Account
+
+</button>
+
+<p class="login-link">
+
+Already have an account?
+
+<a href="/login/">
+
+Log In
+
+</a>
+
+</p>
+
+</form>
+
+<!-- OTP Verification -->
+
+<div
+id="otpCard"
+class="otp-card hidden">
+
+<h3>
+
+Verify Email
+
+</h3>
+
+<p>
+
+We've sent a 6-digit verification code to
+
+<strong id="otpEmail">
+
+</strong>
+
+</p>
+
+<form
+id="otpForm">
+
+<div class="otp-inputs">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+</div>
+
+<button
+type="submit"
+id="verifyOtpButton"
+class="primary-btn">
+
+Verify Account
+
+</button>
+
+<p class="resend-text">
+
+Didn't receive the code?
+
+<button
+type="button"
+id="resendOtp">
+
+Resend OTP
+
+</button>
+
+</p>
+
+</form>
+
+</div>
+<!-- Loading Overlay -->
+
+<div
+id="loadingOverlay"
+class="loading-overlay hidden">
+
+<div class="loader"></div>
+
+<p>
+
+Please wait...
+
+</p>
+
+</div>
+
+<!-- Success Alert -->
+
+<div
+id="successAlert"
+class="alert success hidden">
+
+<span id="successMessage">
+
+</span>
+
+</div>
+
+<!-- Error Alert -->
+
+<div
+id="errorAlert"
+class="alert error hidden">
+
+<span id="errorMessage">
+
+</span>
+
+</div>
+
+<!-- Toast -->
+
+<div
+id="toast"
+class="toast hidden">
+
+<span id="toastText">
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="signup-footer">
+
+<p>
+
+© <span id="year"></span>
+
+SocialElite.
+
+All Rights Reserved.
+
+</p>
+
+<div class="footer-links">
+
+<a href="/about/">
+
+About
+
+</a>
+
+<a href="/contact/">
+
+Contact
+
+</a>
+
+<a href="/faq/">
+
+FAQ
+
+</a>
+
+<a href="/privacy/">
+
+Privacy Policy
+
+</a>
+
+<a href="/terms/">
+
+Terms of Service
+
+</a>
+
+</div>
+
+</footer>
+
+<script src="index.js"></script>
+
+</body>
+
+  </html>
