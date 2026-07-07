@@ -29,7 +29,7 @@ document.getElementById("toggleConfirmPassword") as HTMLButtonElement;
 
 // CHANGE LATER
 const API_BASE =
-"https://YOUR-PROJECT.supabase.co/functions/v1";
+"https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1";
 
 
 // ======================================
@@ -175,7 +175,7 @@ try{
 
 const response=await fetch(
 
-`${API_BASE}/send-signup-otp`,
+`$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/send-signup-otp`,
 
 {
 
