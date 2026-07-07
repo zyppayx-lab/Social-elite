@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Login | SocialElite</title>
+
+<link rel="icon" href="../assets/favicon.ico">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="login.css">
+
+</head>
+
+<body>
+
+<div class="background-blur blur-one"></div>
+
+<div class="background-blur blur-two"></div>
+
+<div class="login-container">
+
+<div class="login-card">
+
+<!-- Logo -->
+
+<a href="../index.html"
+class="logo">
+
+<div class="logo-icon">
+
+S
+
+</div>
+
+<span>
+
+Social<span class="blue">Elite</span>
+
+</span>
+
+</a>
+
+<!-- Heading -->
+
+<div class="heading">
+
+<h1>
+
+Welcome Back
+
+</h1>
+
+<p>
+
+Login to continue to your dashboard.
+
+</p>
+
+</div>
+
+<!-- Success Message -->
+
+<div
+id="successMessage"
+class="success-box hidden">
+
+</div>
+
+<!-- Error Message -->
+
+<div
+id="errorMessage"
+class="error-box hidden">
+
+</div>
+
+<form
+id="loginForm">
+
+<!-- Email -->
+
+<div class="form-group">
+
+<label>
+
+Email Address
+
+</label>
+
+<input
+
+type="email"
+
+id="email"
+
+placeholder="Enter your email"
+
+autocomplete="email"
+
+required
+
+>
+
+</div>
+
+<!-- Password -->
+
+<div class="form-group">
+
+<label>
+
+Password
+
+</label>
+
+<div class="password-wrapper">
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Enter your password"
+
+autocomplete="current-password"
+
+required
+
+>
+
+<button
+
+type="button"
+
+id="togglePassword"
+
+class="toggle-password">
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Remember -->
+
+<div class="options">
+
+<label class="remember">
+
+<input
+type="checkbox"
+id="remember">
+
+<span>
+
+Remember Me
+
+</span>
+
+</label>
+
+<a
+
+href="../forgot-password/forgot-password.html"
+
+class="forgot-link">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+<!-- Login -->
+
+<button
+
+type="submit"
+
+id="loginButton"
+
+class="login-button">
+
+<span
+id="buttonText">
+
+Login
+
+</span>
+
+<div
+
+id="loadingSpinner"
+
+class="spinner hidden">
+
+</div>
+
+</button>
+
+</form>
+
+<!-- Divider -->
+
+<div class="divider">
+
+<span>
+
+OR
+
+</span>
+
+</div>
+
+<!-- Create Account -->
+
+<div class="signup-section">
+
+<p>
+
+Don't have an account?
+
+</p>
+
+<a
+
+href="../signup/signup.html"
+
+class="signup-button">
+
+Create Account
+
+</a>
+
+</div>
+
+<!-- Footer -->
+
+<div class="footer">
+
+<p>
+
+© 2026 SocialElite.
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="login.ts"></script>
+
+</body>
+
+  </html>
