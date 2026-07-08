@@ -11,7 +11,7 @@ index.js
 |--------------------------------------------------------------------------
 */
 
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_URL = "https://dohxtukzxopwkvxeppdl.supabase.co";
 
 const SEND_SIGNUP_OTP =
 `$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/send-signup-otp`;
