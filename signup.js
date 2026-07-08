@@ -136,11 +136,14 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-    console.log("Sending POST to:", API);
+    console.log("=== START REQUEST ===");
+    console.log("API:", API);
 
     const response = await fetch(API, {
         method: "POST",
         mode: "cors",
+        cache: "no-cache",
+        credentials: "omit",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -151,54 +154,39 @@ form.addEventListener("submit", async (e) => {
         })
     });
 
-    console.log("HTTP Status:", response.status);
+    console.log("Status:", response.status);
     console.log("OK:", response.ok);
 
     const text = await response.text();
-    console.log("Raw Response:", text);
-
-    let result = {};
-
-    try {
-        result = JSON.parse(text);
-    } catch (e) {
-        console.log("Response is not JSON.");
-    }
-
-    if (!response.ok) {
-        throw new Error(result.error || result.message || text);
-    }
-
-    console.log("Success:", result);
-
-    sessionStorage.setItem("signupData", JSON.stringify({
-        fullName: name,
-        email: userEmail,
-        password: userPassword,
-        referralCode: referral
-    }));
-
-    showSuccess(result.message || "OTP sent successfully.");
-
-    setTimeout(() => {
-        window.location.href = "../verify-signup/";
-    }, 1000);
+    console.log("Response:", text);
 
 } catch (err) {
 
-    console.error("Fetch Error:", err);
-    console.error("Error Name:", err.name);
-    console.error("Error Message:", err.message);
+    console.log("ERROR NAME:", err.name);
+    console.log("ERROR MESSAGE:", err.message);
+    console.log("ERROR STACK:", err.stack);
+    console.log("ONLINE:", navigator.onLine);
+    console.log("CURRENT PAGE:", window.location.href);
+    console.log("API URL:", API);
 
     alert(
-        "Name: " + err.name +
-        "\n\nMessage: " + err.message
+        JSON.stringify({
+            name: err.name,
+            message: err.message,
+            online: navigator.onLine,
+            page: window.location.href,
+            api: API
+        }, null, 2)
     );
 
-    showError(err.message || "Failed to connect to the server.");
+} finally {
+
+    hideLoading();
+
+        }
 
         
-    } finally {
+     finally {
 
         hideLoading();
 
