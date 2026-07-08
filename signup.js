@@ -136,55 +136,68 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        console.log("Sending POST to:", API);
+    console.log("Sending POST to:", API);
 
-const response = await fetch(API, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        email: userEmail,
-        referral_code: referral
-    })
-});
+    const response = await fetch(API, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            email: userEmail,
+            referral_code: referral
+        })
+    });
 
-console.log("Status:", response.status);
+    console.log("HTTP Status:", response.status);
+    console.log("OK:", response.ok);
 
-const responseText = await response.text();
-console.log("Response:", responseText);
+    const text = await response.text();
+    console.log("Raw Response:", text);
 
-let result = {};
+    let result = {};
 
-try {
-    result = JSON.parse(responseText);
-} catch {
-    result = { message: responseText };
-}
-
-if (!response.ok) {
-    throw new Error(result.error || result.message || "Signup failed.");
+    try {
+        result = JSON.parse(text);
+    } catch (e) {
+        console.log("Response is not JSON.");
     }
 
-        sessionStorage.setItem("signupData", JSON.stringify({
-            fullName: name,
-            email: userEmail,
-            password: userPassword,
-            referralCode: referral
-        }));
+    if (!response.ok) {
+        throw new Error(result.error || result.message || text);
+    }
 
-        showSuccess(result.message || "OTP sent successfully.");
+    console.log("Success:", result);
 
-        setTimeout(() => {
-            window.location.href = "../verify-signup/";
-        }, 1000);
+    sessionStorage.setItem("signupData", JSON.stringify({
+        fullName: name,
+        email: userEmail,
+        password: userPassword,
+        referralCode: referral
+    }));
 
-    } catch (err) {
+    showSuccess(result.message || "OTP sent successfully.");
 
-        console.error(err);
+    setTimeout(() => {
+        window.location.href = "../verify-signup/";
+    }, 1000);
 
-        showError(err.message || "Failed to connect to the server.");
+} catch (err) {
 
+    console.error("Fetch Error:", err);
+    console.error("Error Name:", err.name);
+    console.error("Error Message:", err.message);
+
+    alert(
+        "Name: " + err.name +
+        "\n\nMessage: " + err.message
+    );
+
+    showError(err.message || "Failed to connect to the server.");
+
+        
     } finally {
 
         hideLoading();
