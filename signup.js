@@ -159,7 +159,7 @@ form.addEventListener("submit", async (e) => {
 
     const text = await response.text();
     console.log("Response:", text);
-
+showSuccess("Request completed. Check the console.");
 } catch (err) {
 
     console.log("ERROR NAME:", err.name);
@@ -183,13 +183,6 @@ form.addEventListener("submit", async (e) => {
 
     hideLoading();
 
-        }
-
-        
-     finally {
-
-        hideLoading();
-
-    }
+}
 
 });
