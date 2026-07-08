@@ -136,22 +136,35 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        const response = await fetch(API, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: userEmail,
-                referral_code: referral
-            })
-        });
+        console.log("Sending POST to:", API);
 
-        const result = await response.json();
+const response = await fetch(API, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: userEmail,
+        referral_code: referral
+    })
+});
 
-        if (!response.ok) {
-            throw new Error(result.error || result.message || "Signup failed.");
-        }
+console.log("Status:", response.status);
+
+const responseText = await response.text();
+console.log("Response:", responseText);
+
+let result = {};
+
+try {
+    result = JSON.parse(responseText);
+} catch {
+    result = { message: responseText };
+}
+
+if (!response.ok) {
+    throw new Error(result.error || result.message || "Signup failed.");
+    }
 
         sessionStorage.setItem("signupData", JSON.stringify({
             fullName: name,
