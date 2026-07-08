@@ -14,10 +14,10 @@ index.js
 const SUPABASE_URL = "YOUR_SUPABASE_URL";
 
 const SEND_SIGNUP_OTP =
-`${SUPABASE_URL}/functions/v1/send-signup-otp`;
+`$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/send-signup-otp`;
 
 const VERIFY_SIGNUP_OTP =
-`${SUPABASE_URL}/functions/v1/verify-signup-otp`;
+`$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/verify-signup-otp`;
 
 /*
 |--------------------------------------------------------------------------
