@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Verify Email | SocialElite
+
+</title>
+
+<meta
+name="description"
+content="Verify your email address to activate your SocialElite account.">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="index.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">
+
+<a href="/">
+
+<h1>
+
+SocialElite
+
+</h1>
+
+</a>
+
+<p>
+
+Email Verification
+
+</p>
+
+</div>
+
+<div class="title">
+
+<h2>
+
+Verify Your Email
+
+</h2>
+
+<p>
+
+We've sent a 6-digit verification code to
+
+<strong id="userEmail">
+
+</strong>
+
+</p>
+
+</div>
+
+<form id="verifyForm">
+
+<div class="otp-group">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+<input
+type="text"
+maxlength="1"
+class="otp-input">
+
+</div>
+
+<button
+type="submit"
+id="verifyButton"
+class="primary-btn">
+
+Verify Account
+
+</button>
+
+<p class="resend">
+
+Didn't receive the code?
+
+<button
+type="button"
+id="resendOtp">
+
+Resend OTP
+
+</button>
+
+</p>
+
+<div
+id="errorBox"
+class="message error hidden">
+
+</div>
+
+<div
+id="successBox"
+class="message success hidden">
+
+</div>
+
+</form>
+<div
+id="loadingOverlay"
+class="loading-overlay hidden">
+
+<div class="loader"></div>
+
+<p>
+
+Verifying your account...
+
+</p>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+<div class="footer-links">
+
+<a href="/about/">
+
+About
+
+</a>
+
+<a href="/blog/">
+
+Blog
+
+</a>
+
+<a href="/contact/">
+
+Contact
+
+</a>
+
+<a href="/faq/">
+
+FAQ
+
+</a>
+
+<a href="/privacy/">
+
+Privacy Policy
+
+</a>
+
+<a href="/terms/">
+
+Terms of Service
+
+</a>
+
+</div>
+
+<p>
+
+© <span id="year"></span>
+
+SocialElite.
+
+All Rights Reserved.
+
+</p>
+
+</footer>
+
+<script src="index.js"></script>
+
+</body>
+
+</html>
