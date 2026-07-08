@@ -1,53 +1,37 @@
 "use strict";
 
-/* ======================================
-SOCIALELITE SIGNUP
-index.js
-====================================== */
+/*====================================================
+SocialElite Signup
+====================================================*/
 
-/*
-|--------------------------------------------------------------------------
-| CHANGE THESE
-|--------------------------------------------------------------------------
-*/
+const API =
+"https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1";
 
-const SUPABASE_URL = "https://dohxtukzxopwkvxeppdl.supabase.co";
+/*====================================================
+ENDPOINTS
+====================================================*/
 
 const SEND_SIGNUP_OTP =
-`$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/send-signup-otp`;
+`${API}/send-signup-otp`;
 
-const VERIFY_SIGNUP_OTP =
-`$https://dohxtukzxopwkvxeppdl.supabase.co/functions/v1/verify-signup-otp`;
+/*====================================================
+ELEMENTS
+====================================================*/
 
-/*
-|--------------------------------------------------------------------------
-| ELEMENTS
-|--------------------------------------------------------------------------
-*/
-
-const signupForm =
+const form =
 document.getElementById("signupForm");
 
-const otpForm =
-document.getElementById("otpForm");
-
-const signupButton =
-document.getElementById("signupButton");
-
-const verifyOtpButton =
-document.getElementById("verifyOtpButton");
-
-const loadingOverlay =
+const loading =
 document.getElementById("loadingOverlay");
 
-const otpCard =
-document.getElementById("otpCard");
+const submitButton =
+document.getElementById("signupButton");
 
-const emailDisplay =
-document.getElementById("otpEmail");
+const errorBox =
+document.getElementById("errorBox");
 
-const resendButton =
-document.getElementById("resendOtp");
+const successBox =
+document.getElementById("successBox");
 
 const password =
 document.getElementById("password");
@@ -55,76 +39,68 @@ document.getElementById("password");
 const confirmPassword =
 document.getElementById("confirmPassword");
 
-const passwordMatch =
-document.getElementById("passwordMatch");
-
 const strengthBar =
 document.getElementById("strengthBar");
 
 const strengthText =
 document.getElementById("strengthText");
 
-const successAlert =
-document.getElementById("successAlert");
+const passwordMatch =
+document.getElementById("passwordMatch");
 
-const errorAlert =
-document.getElementById("errorAlert");
+/*====================================================
+HELPERS
+====================================================*/
 
-const successMessage =
-document.getElementById("successMessage");
+function showLoading(){
 
-const errorMessage =
-document.getElementById("errorMessage");
+loading.classList.remove("hidden");
 
-/*
-|--------------------------------------------------------------------------
-| PASSWORD TOGGLE
-|--------------------------------------------------------------------------
-*/
+}
 
-document
-.getElementById("togglePassword")
-.addEventListener("click", function(){
+function hideLoading(){
 
-password.type =
-password.type === "password"
-? "text"
-: "password";
+loading.classList.add("hidden");
 
-this.textContent =
-password.type === "password"
-? "Show"
-: "Hide";
+}
 
-});
+function showError(message){
 
-document
-.getElementById("toggleConfirmPassword")
-.addEventListener("click", function(){
+errorBox.textContent = message;
 
-confirmPassword.type =
-confirmPassword.type === "password"
-? "text"
-: "password";
+errorBox.classList.remove("hidden");
 
-this.textContent =
-confirmPassword.type === "password"
-? "Show"
-: "Hide";
+successBox.classList.add("hidden");
 
-});
+}
 
-/*
-|--------------------------------------------------------------------------
-| PASSWORD STRENGTH
-|--------------------------------------------------------------------------
-*/
+function showSuccess(message){
 
-password.addEventListener("input", ()=>{
+successBox.textContent = message;
 
-const value = password.value;
+successBox.classList.remove("hidden");
+
+errorBox.classList.add("hidden");
+
+}
+
+function clearMessages(){
+
+errorBox.classList.add("hidden");
+
+successBox.classList.add("hidden");
+
+}
+
+/*====================================================
+PASSWORD STRENGTH
+====================================================*/
+
+password.addEventListener("input",()=>{
 
 let score = 0;
+
+const value = password.value;
 
 if(value.length >= 8) score++;
 
@@ -132,19 +108,25 @@ if(/[A-Z]/.test(value)) score++;
 
 if(/[0-9]/.test(value)) score++;
 
-if(/[!@#$%^&*(),.?":{}|<>]/.test(value)) score++;
+if(/[!@#$%^&*]/.test(value)) score++;
 
-const widths = ["0%","25%","50%","75%","100%"];
+const width = [
+"0%",
+"25%",
+"50%",
+"75%",
+"100%"
+];
 
-const colors = [
-"#ef4444",
-"#f97316",
+const color = [
+"#dc2626",
+"#ea580c",
 "#eab308",
 "#22c55e",
 "#16a34a"
 ];
 
-const labels = [
+const label = [
 "Very Weak",
 "Weak",
 "Fair",
@@ -152,22 +134,17 @@ const labels = [
 "Excellent"
 ];
 
-strengthBar.style.width =
-widths[score];
+strengthBar.style.width = width[score];
 
-strengthBar.style.background =
-colors[score];
+strengthBar.style.background = color[score];
 
-strengthText.textContent =
-labels[score];
+strengthText.textContent = label[score];
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| PASSWORD MATCH
-|--------------------------------------------------------------------------
-*/
+/*====================================================
+PASSWORD MATCH
+====================================================*/
 
 confirmPassword.addEventListener("input",()=>{
 
@@ -189,64 +166,111 @@ passwordMatch.style.color="#22c55e";
 
 passwordMatch.textContent="Passwords do not match";
 
-passwordMatch.style.color="#ef4444";
+passwordMatch.style.color="#dc2626";
 
 }
 
 });
-/*
-|--------------------------------------------------------------------------
-| HELPERS
-|--------------------------------------------------------------------------
-*/
 
-function showLoading(){
+/*====================================================
+SHOW PASSWORD
+====================================================*/
 
-loadingOverlay.classList.remove("hidden");
+document
+.getElementById("togglePassword")
+.onclick=function(){
 
-}
+password.type=
+password.type==="password"
+?"text"
+:"password";
 
-function hideLoading(){
+this.textContent=
+password.type==="password"
+?"Show"
+:"Hide";
 
-loadingOverlay.classList.add("hidden");
+};
 
-}
+document
+.getElementById("toggleConfirmPassword")
+.onclick=function(){
 
-function showSuccess(message){
+confirmPassword.type=
+confirmPassword.type==="password"
+?"text"
+:"password";
 
-successMessage.textContent = message;
+this.textContent=
+confirmPassword.type==="password"
+?"Show"
+:"Hide";
 
-successAlert.classList.remove("hidden");
+};
+/*====================================================
+SUBMIT SIGNUP
+====================================================*/
 
-errorAlert.classList.add("hidden");
-
-}
-
-function showError(message){
-
-errorMessage.textContent = message;
-
-errorAlert.classList.remove("hidden");
-
-successAlert.classList.add("hidden");
-
-}
-
-/*
-|--------------------------------------------------------------------------
-| SEND SIGNUP OTP
-|--------------------------------------------------------------------------
-*/
-
-signupForm.addEventListener("submit", async (e)=>{
+form.addEventListener("submit", async (e) => {
 
 e.preventDefault();
 
-successAlert.classList.add("hidden");
+clearMessages();
 
-errorAlert.classList.add("hidden");
+const fullName =
+document.getElementById("fullName").value.trim();
 
-if(password.value !== confirmPassword.value){
+const email =
+document.getElementById("email").value.trim().toLowerCase();
+
+const passwordValue =
+password.value;
+
+const confirmValue =
+confirmPassword.value;
+
+const referralCode =
+document.getElementById("referralCode").value.trim();
+
+const agree =
+document.getElementById("agreeTerms").checked;
+
+if(fullName.length < 2){
+
+showError("Please enter your full name.");
+
+return;
+
+}
+
+if(email===""){
+
+showError("Email address is required.");
+
+return;
+
+}
+
+const emailRegex =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(!emailRegex.test(email)){
+
+showError("Please enter a valid email address.");
+
+return;
+
+}
+
+if(passwordValue.length < 8){
+
+showError("Password must be at least 8 characters.");
+
+return;
+
+}
+
+if(passwordValue !== confirmValue){
 
 showError("Passwords do not match.");
 
@@ -254,83 +278,74 @@ return;
 
 }
 
-if(!document.getElementById("agreeTerms").checked){
+if(!agree){
 
-showError("Please accept the Terms and Privacy Policy.");
+showError("You must agree to the Terms and Privacy Policy.");
 
 return;
 
 }
 
-signupButton.disabled = true;
+submitButton.disabled = true;
 
 showLoading();
-
-const payload = {
-
-full_name:
-document.getElementById("fullname").value.trim(),
-
-email:
-document.getElementById("email").value.trim().toLowerCase(),
-
-password:
-password.value,
-
-referral_code:
-document.getElementById("referralCode").value.trim()
-
-};
 
 try{
 
 const response = await fetch(
-
 SEND_SIGNUP_OTP,
-
 {
-
 method:"POST",
 
 headers:{
-
 "Content-Type":"application/json"
-
 },
 
-body:JSON.stringify(payload)
+body:JSON.stringify({
+
+email,
+
+referral_code:
+referralCode || null
+
+})
 
 }
-
 );
 
 const result = await response.json();
 
-hideLoading();
-
-signupButton.disabled = false;
-
 if(!response.ok){
 
-showError(
-
-result.message ||
+throw new Error(
 
 result.error ||
 
-"Failed to send OTP."
+result.message ||
+
+"Unable to send OTP."
 
 );
 
-return;
-
 }
 
-emailDisplay.textContent = payload.email;
+sessionStorage.setItem(
 
-otpCard.classList.remove("hidden");
+"signupData",
 
-signupForm.style.display = "none";
+JSON.stringify({
+
+fullName,
+
+email,
+
+password:passwordValue,
+
+referralCode
+
+})
+
+);
 
 showSuccess(
 
@@ -340,263 +355,29 @@ result.message ||
 
 );
 
-otpCard.scrollIntoView({
+setTimeout(()=>{
 
-behavior:"smooth"
+window.location.href =
+"/verify-signup/";
 
-});
-
-document.querySelector(".otp-input").focus();
+},1000);
 
 }catch(error){
 
-hideLoading();
-
-signupButton.disabled = false;
-
 showError(
 
 error.message ||
 
-"Network error."
+"Something went wrong."
 
 );
 
-}
-
-});
-
-/*
-|--------------------------------------------------------------------------
-| RESEND OTP
-|--------------------------------------------------------------------------
-*/
-
-resendButton.addEventListener("click",()=>{
-
-signupForm.dispatchEvent(
-
-new Event("submit",{
-
-cancelable:true
-
-})
-
-);
-
-});
-/*
-|--------------------------------------------------------------------------
-| OTP INPUT AUTO MOVE
-|--------------------------------------------------------------------------
-*/
-
-const otpInputs = document.querySelectorAll(".otp-input");
-
-otpInputs.forEach((input, index) => {
-
-input.addEventListener("input", () => {
-
-input.value = input.value.replace(/[^0-9]/g, "");
-
-if (input.value && index < otpInputs.length - 1) {
-
-otpInputs[index + 1].focus();
-
-}
-
-});
-
-input.addEventListener("keydown", (e) => {
-
-if (
-e.key === "Backspace" &&
-!input.value &&
-index > 0
-) {
-
-otpInputs[index - 1].focus();
-
-}
-
-});
-
-});
-
-/*
-|--------------------------------------------------------------------------
-| VERIFY OTP
-|--------------------------------------------------------------------------
-*/
-
-otpForm.addEventListener("submit", async (e) => {
-
-e.preventDefault();
-
-showLoading();
-
-verifyOtpButton.disabled = true;
-
-const otp = [...otpInputs]
-
-.map(input => input.value)
-
-.join("");
-
-const payload = {
-
-full_name:
-document.getElementById("fullname").value.trim(),
-
-email:
-document.getElementById("email").value.trim().toLowerCase(),
-
-password:
-password.value,
-
-referral_code:
-document.getElementById("referralCode").value.trim(),
-
-otp
-
-};
-
-try {
-
-const response = await fetch(
-
-VERIFY_SIGNUP_OTP,
-
-{
-
-method: "POST",
-
-headers: {
-
-"Content-Type": "application/json"
-
-},
-
-body: JSON.stringify(payload)
-
-}
-
-);
-
-const result = await response.json();
+}finally{
 
 hideLoading();
 
-verifyOtpButton.disabled = false;
-
-if (!response.ok) {
-
-showError(
-
-result.message ||
-
-result.error ||
-
-"OTP verification failed."
-
-);
-
-return;
-
-}
-
-showSuccess(
-
-result.message ||
-
-"Account created successfully."
-
-);
-
-/*
-|--------------------------------------------------------------------------
-| SAVE SESSION
-|--------------------------------------------------------------------------
-*/
-
-if (result.session) {
-
-localStorage.setItem(
-
-"socialelite_session",
-
-JSON.stringify(result.session)
-
-);
-
-}
-
-if (result.access_token) {
-
-localStorage.setItem(
-
-"access_token",
-
-result.access_token
-
-);
-
-}
-
-if (result.refresh_token) {
-
-localStorage.setItem(
-
-"refresh_token",
-
-result.refresh_token
-
-);
-
-}
-
-/*
-|--------------------------------------------------------------------------
-| REDIRECT
-|--------------------------------------------------------------------------
-*/
-
-setTimeout(() => {
-
-window.location.href = "/dashboard/";
-
-}, 1500);
-
-} catch (error) {
-
-hideLoading();
-
-verifyOtpButton.disabled = false;
-
-showError(
-
-error.message ||
-
-"Network error."
-
-);
+submitButton.disabled = false;
 
 }
 
 });
-
-/*
-|--------------------------------------------------------------------------
-| FOOTER YEAR
-|--------------------------------------------------------------------------
-*/
-
-const year = document.getElementById("year");
-
-if (year) {
-
-year.textContent = new Date().getFullYear();
-
-}
-
-console.log("SocialElite Signup Ready");
